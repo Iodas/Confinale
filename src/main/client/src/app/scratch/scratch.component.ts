@@ -27,7 +27,8 @@ export class ScratchComponent implements OnInit {
     itemname: "",
     price: null,
     modificationTime: null,
-    creationTime: null
+    creationTime: null,
+    id: null
   };
 
   constructor( private httpClient:HttpClient) { }
@@ -51,6 +52,16 @@ export class ScratchComponent implements OnInit {
         this.items = resp;
       });
 
+  }
+
+  deleteItemButton(itemId):void {
+    this.httpClient.delete("api/items/" + itemId + "/delete")
+      .subscribe(resp => {
+        location.reload();
+      },
+        err => {
+        alert("This item wasn't deleted")
+        })
   }
 
 }

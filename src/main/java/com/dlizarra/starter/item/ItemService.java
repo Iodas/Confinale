@@ -32,4 +32,12 @@ public class ItemService {
     public Iterable<Item> getItems(){
         return this.itemRepository.findAll();
     }
+
+    public void deleteItem(Integer itemId){
+        Item item = itemRepository.findItemById(itemId);
+        if (item == null){
+            throw new ItemNotFoundException("Item was not found in the Repository");
+        }
+        itemRepository.delete(item);
+    }
 }

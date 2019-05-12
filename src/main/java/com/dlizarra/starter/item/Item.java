@@ -15,6 +15,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    public Integer getId() {
+        return id;
+    }
 
     @Column(nullable = false, unique = true, length = 30)
     private String username;

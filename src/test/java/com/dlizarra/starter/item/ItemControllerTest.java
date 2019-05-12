@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Optional;
+
 public class ItemControllerTest extends AbstractEndpointTest {
     @Qualifier("itemRepository")
     @Autowired
@@ -78,5 +80,32 @@ public class ItemControllerTest extends AbstractEndpointTest {
         String content = mvcResult.getResponse().getContentAsString();
         Item[] items = super.mapFromJson(content, Item[].class);
         Assert.assertTrue(items.length > 1);
+    }
+
+    @Test
+    public void deleteItemTest() throws Exception{
+        Item item = new Item();
+        item.setUsername("Michael");
+        item.setItemname("Banane");
+        item.setPrice(5.9f);
+        itemRepository.save(item);
+
+        Item item1 = new Item();
+        item1.setUsername("Michael1");
+        item1.setItemname("Banane1");
+        item1.setPrice(6.9f);
+        itemRepository.save(item1);
+
+        Integer item1Id = item.getId();
+
+        String uri = "/items/" + item1Id + "/delete";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)
+                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        Assert.assertEquals(200, status);
+
+        Optional<Item> optionalItem = Optional.ofNullable(itemRepository.findItemById(item1Id));
+        Assert.assertTrue(!optionalItem.isPresent());
     }
 }

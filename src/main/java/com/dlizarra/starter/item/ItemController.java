@@ -33,4 +33,9 @@ public class ItemController {
         return itemService.calculateSum();
     }
 
+    @PutMapping("/items/{itemId}/edit")
+    void editItem(@PathVariable Integer itemId, @RequestBody  Item item){
+        this.itemService.editItem(itemId, item);
+    }
+
 }

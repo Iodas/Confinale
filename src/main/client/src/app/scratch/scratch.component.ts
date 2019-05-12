@@ -80,5 +80,21 @@ export class ScratchComponent implements OnInit {
         })
   }
 
+  editItemButton(item):void {
+
+    var newItem = new Item();
+    newItem.itemname = item.itemname;
+    newItem.username = item.username;
+    newItem.price = item.price;
+    this.httpClient.put("api/items/" + item.id + "/edit", newItem)
+      .subscribe(resp => {
+          location.reload();
+        },
+        err => {
+          alert("unable to edit item")
+        })
+  }
+
+
 
 }

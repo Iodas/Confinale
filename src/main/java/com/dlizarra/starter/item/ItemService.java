@@ -48,4 +48,13 @@ public class ItemService {
         items.forEach(item -> itemSum.setSum(itemSum.getSum() + item.getPrice()));
         return itemSum;
     }
+
+    public void editItem(Integer itemId, Item item){
+        Item oldItem = itemRepository.findItemById(itemId);
+        //overrides the old item because the changed item still has the same id
+        oldItem.setUsername(item.getUsername());
+        oldItem.setPrice(item.getPrice());
+        oldItem.setItemname(item.getItemname());
+        itemRepository.save(oldItem);
+    }
 }

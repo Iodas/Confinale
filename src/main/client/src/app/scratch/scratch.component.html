@@ -1,23 +1,18 @@
-<p>
-  Hello World!
-</p>
-<p>
-  We prepared a sample http request for you:
-  <button (click)="onLoadUsersButtonClick()"> Klick me to load users</button>
-</p>
 
-<p *ngIf="users">
-    We loaded the following users from the database at {{loadedAt}}:
-</p>
+<body>
+  <div>
+    <label>
+      <input [(ngModel)]="item.username" placeholder="username"/>
+    </label>
+    <label>
+      <input [(ngModel)]="item.itemname" placeholder="item"/>
+    </label>
+    <label>
+      <input type="number"[(ngModel)]="item.price" placeholder="price"/>
+    </label>
+    <button (click)="onAddItemButtonClick()"> add item to shopping list</button>
+  </div>
+</body>
 
 
-<table>
-  <tr *ngFor="let user of users">
-    <td>{{user.id}}</td>
-    <td>{{user.username}}</td>
-  </tr>
-</table>
 
-<p *ngIf="users">
-  <button (click)="removeUsers()"> Clear Loaded Users </button>
-</p>

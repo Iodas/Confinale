@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "./user";
+import {Item} from "./item";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-scratch',
@@ -10,27 +12,36 @@ import {User} from "./user";
 export class ScratchComponent implements OnInit {
 
 
-  users: User[];
+  items: Item[];
+
+
 
   loadedAt: string;
-
-  constructor( private httpClient:HttpClient) { }
 
   ngOnInit() {
   }
 
+  item: Item = {
+    username:"",
+    itemname: "",
+    price: null,
+    modificationTime: null,
+    creationTime: null
+  };
 
-  onLoadUsersButtonClick() {
-    this.httpClient.get<User[]>("api/users")
-    //NOTE: ideally, we should have an error handler here, which we left away for simplicity
-      .subscribe(resp => {
-        this.users = resp;
-      });
+  constructor( private httpClient:HttpClient) { }
 
-    this.loadedAt = new Date().toLocaleTimeString();
+
+  onAddItemButtonClick():void {
+    this.httpClient.post("api/items/add", this.item).subscribe(
+      resp => {
+        location.reload();
+      },
+      err => {
+        alert("Invalid input provided");
+      }
+    )
+
   }
 
-  removeUsers() {
-    this.users = null;
-  }
 }

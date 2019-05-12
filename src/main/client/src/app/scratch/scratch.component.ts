@@ -19,6 +19,7 @@ export class ScratchComponent implements OnInit {
   loadedAt: string;
 
   ngOnInit() {
+    this.loadAllItems();
   }
 
   item: Item = {
@@ -41,6 +42,14 @@ export class ScratchComponent implements OnInit {
         alert("Invalid input provided");
       }
     )
+
+  }
+
+  loadAllItems(){
+    this.httpClient.get<Item[]>("api/items")
+      .subscribe(resp => {
+        this.items = resp;
+      });
 
   }
 

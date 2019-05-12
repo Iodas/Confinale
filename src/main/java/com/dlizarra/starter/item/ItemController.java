@@ -21,4 +21,9 @@ public class ItemController {
         this.itemService.addItem(item);
     }
 
+    @GetMapping("/items")
+    Iterable<Item> all(){
+        return itemService.getItems();
+    }
+
 }

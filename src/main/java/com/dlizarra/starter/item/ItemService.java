@@ -28,4 +28,8 @@ public class ItemService {
 
         itemRepository.save(item);
     }
+
+    public Iterable<Item> getItems(){
+        return this.itemRepository.findAll();
+    }
 }

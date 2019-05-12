@@ -11,4 +11,5 @@ import java.util.List;
 public interface ItemRepository extends CrudRepository<Item, Long> {
     Item findItemByItemname(String itemname);
     Item findItemById(Integer id);
+    Item findItemByItemnameAndUsernameAndPrice(String itemname, String username, Float price);
 }

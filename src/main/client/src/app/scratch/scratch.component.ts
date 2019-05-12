@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "./user";
 import {Item} from "./item";
 import {Observable} from "rxjs";
+import {ItemSum} from "./itemSum";
 
 @Component({
   selector: 'app-scratch',
@@ -20,6 +21,7 @@ export class ScratchComponent implements OnInit {
 
   ngOnInit() {
     this.loadAllItems();
+    this.loadSum();
   }
 
   item: Item = {
@@ -30,6 +32,10 @@ export class ScratchComponent implements OnInit {
     creationTime: null,
     id: null
   };
+
+  itemSum: ItemSum = {
+    sum: null
+}
 
   constructor( private httpClient:HttpClient) { }
 
@@ -63,5 +69,16 @@ export class ScratchComponent implements OnInit {
         alert("This item wasn't deleted")
         })
   }
+
+  loadSum(){
+    this.httpClient.get<ItemSum>("api/items/sum")
+      .subscribe(resp => {
+        this.itemSum = resp;
+      },
+        err => {
+        alert("unable to calculate Item Sum")
+        })
+  }
+
 
 }

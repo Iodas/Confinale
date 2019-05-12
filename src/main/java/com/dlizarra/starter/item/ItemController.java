@@ -28,4 +28,9 @@ public class ItemController {
         this.itemService.deleteItem(itemId);
     }
 
+    @GetMapping("/items/sum")
+    ItemSum calculateSum(){
+        return itemService.calculateSum();
+    }
+
 }

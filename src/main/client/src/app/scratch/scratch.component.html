@@ -6,11 +6,17 @@
   <table>
     <tr *ngFor="let item of items">
       <td>{{item.username}}</td>
-      <td>{{item.itemname}}</td>
-      <td>{{item.price}}</td>
+      <!-- really ugly code but i didn't want to invest a big part of the time in html/angular since i haven't used html in a long time and have never touched angular before and was focusing on the functionality -->
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;{{item.itemname}}</td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;{{item.price}}</td>
       <button (click)="deleteItemButton(item.id)"> delete this Item</button>
+
     </tr>
+    <td>sum of Items:</td>
+    <td></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;{{itemSum.sum}}</td>
   </table>
+
 
 
   <div>

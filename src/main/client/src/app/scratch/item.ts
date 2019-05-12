@@ -6,5 +6,4 @@ export class Item{
   public modificationTime: string;
   public price: number;
 
-
 }

@@ -40,4 +40,12 @@ public class ItemService {
         }
         itemRepository.delete(item);
     }
+
+    public ItemSum calculateSum(){
+        Iterable<Item> items = itemRepository.findAll();
+        ItemSum itemSum = new ItemSum();
+        itemSum.setSum(0f);
+        items.forEach(item -> itemSum.setSum(itemSum.getSum() + item.getPrice()));
+        return itemSum;
+    }
 }

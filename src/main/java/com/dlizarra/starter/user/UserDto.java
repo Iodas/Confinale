@@ -31,6 +31,7 @@ public class UserDto {
 	private boolean enabled;
 	private LocalDateTime creationTime;
 	private LocalDateTime modificationTime;
+	private Float shoppingSum;
 	@JsonIgnore
 	private Set<Role> roles;
 

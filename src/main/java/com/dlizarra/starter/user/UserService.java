@@ -6,7 +6,7 @@ import com.dlizarra.starter.role.RoleName;
 
 public interface UserService {
 
-	void createUser(UserDto user, RoleName roleName);
+	void createUser(UserDto user);
 
 	void updateUser(UserDto user);
 

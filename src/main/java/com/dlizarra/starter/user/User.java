@@ -43,7 +43,11 @@ public class User {
 	@Column(nullable = false, unique = true, length = MAX_LENGTH_USERNAME)
 	private String username;
 
-	@Column(nullable = false)
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Column
     //Attention: You may not want to do this in production applications
 	private String password;
 
@@ -53,6 +57,17 @@ public class User {
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Role> roles = new HashSet<Role>();
+
+	@Column
+	private Float shoppingSum;
+
+	public void setShoppingSum(Float shoppingSum) {
+		this.shoppingSum = shoppingSum;
+	}
+
+	public Float getShoppingSum() {
+		return shoppingSum;
+	}
 
 	public User() {
 	}

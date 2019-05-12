@@ -24,12 +24,8 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public void createUser(final UserDto userDto, final RoleName roleName) {
+	public void createUser(final UserDto userDto) {
 		final User user = mapper.map(userDto, User.class);
-		final Role role = new Role();
-		role.setRolename(roleName);
-		role.setUser(user);
-		user.getRoles().add(role);
 		user.setEnabled(true);
 
 		userRepository.save(user);
